@@ -27,12 +27,37 @@ describe("Space", function() {
     });
   });
 
-  describe("markedBy", function() {
-    it("should mark a space X or Y", function() {
+  describe("markBy", function() {
+    it("should assign a space a player and all the player's info", function() {
       var space = Space.create(1,2);
       var player = Player.create("kim", "X");
-      space.markedBy(player);
-      space.state.should.equal("X");  
+      space.markBy(player);
+      space.markedBy.should.equal(player);  
+    });
+
+  });
+  
+  describe("find", function() {
+    it("should go to a space by its coordinates", function(){
+      var space = Space.create(1,2);
+      space.goToSpace.should.equal(space);
+    });
+  });
+});
+
+describe("Board", function() {
+  describe("initialize", function() {
+    it("creates 9 spaces when it is initialized", function() {
+      var board = Object.create(Board);
+      board.initialize(9);
+      board.size.should.equal(9);
+    });
+  });
+  describe("create", function() {
+    it("creates a board containing spaces based on given size", function() {
+      var board = Object.create(Board);
+      board.initialize(9);
+      board.spaces.length.should.equal(9);
     });
   });
 });
