@@ -39,33 +39,44 @@ var Board = {
     this.size = size;
     this.spaces = [];
     var length = Math.sqrt(size);
-    // var newSpace = Space.create(1,1);
-    // this.spaces.push(newSpace);
 
-    // define row 0,0 to 2,0
+    // define rows
     for (var i = 0; i < length; i++) {
-      this.spaces.push(Space.create(i, 0));
-    }
-
-    // define row 0,1 to 2,1
-    for (var i = 0; i < length; i++) {
-      var x = i;
-      this.spaces.push(Space.create(x, 1));
-    }
-
-    // define row 0,2 to 2,2
-    for (var i = 0; i < length; i++) {
-      var x = i;
-      this.spaces.push(Space.create(x, 3));
+      for (var j = 0; j < length; j++){
+        this.spaces.push(Space.create(i, j));
+      }
     }
 
     this.spaces.forEach(function(space) {
-      console.log(space);
+      //console.log("testing Board");
+      //console.log(space);
     });
   },
 
-  create: function() {
+  create: function(size) {
     var board = Object.create(Board);
-    return board
+    board.initialize(size);
+    return board;
+  }
+};
+
+// incomplete
+var Game = {
+  initialize: function(board, player_one, player_two) {
+  
+    this.board = board; //takes a Board object
+    console.log(board);
+    
+    this.player_one = player_one;
+    console.log(player_one);
+    
+    this.player_two = player_two;
+    console.log(player_two);
+  },
+
+  create: function(board, player_one, player_two) {
+    var game = Object.create(Game);
+    game.initialize(board, player_one, player_two);
+    return game;
   }
 };

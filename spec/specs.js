@@ -61,3 +61,30 @@ describe("Board", function() {
     });
   });
 });
+
+// incomplete
+describe("Game", function() {
+  describe("initialize", function() {
+    it("initializes a game with a board and two players", function() {
+      var game = Object.create(Game);
+      var board = Board.create(9);
+      var player_one = Player.create("Kim", "X");
+      var player_two = Player.create("Elikem", "O");
+      game.initialize(board, player_one, player_two);
+      game.board.size.should.equal(9);
+      game.player_one.handle.should.equal("Kim");
+      game.player_one.letter.should.equal("X");
+      game.player_two.handle.should.equal("Elikem");
+      game.player_two.letter.should.equal("O")
+    });
+  });
+
+  describe("create", function() {
+    it("creates a full game", function() {
+      var game = Object.create(Game);
+      game.player_one.should.equal("Player1");
+      game.player_two.should.equal("Player2");
+      game.board.should.equal(9);
+    });
+  });
+});
