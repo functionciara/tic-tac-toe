@@ -22,6 +22,7 @@ describe("Space", function() {
   describe("create", function() {
     it("should create a space from specific coordinates", function() {
       var space = Space.create(1,2);
+      
       space.xcoord.should.equal(1);
       space.ycoord.should.equal(2);
     });
@@ -31,6 +32,7 @@ describe("Space", function() {
     it("should assign a space a player and all the player's info", function() {
       var space = Space.create(1,2);
       var player = Player.create("kim", "X");
+      
       space.markBy(player);
       space.markedBy.should.equal(player);  
     });
@@ -40,6 +42,7 @@ describe("Space", function() {
   describe("find", function() {
     it("should go to a space by its coordinates", function(){
       var space = Space.create(1,2);
+      
       space.goToSpace.should.equal(space);
     });
   });
@@ -49,6 +52,7 @@ describe("Board", function() {
   describe("initialize", function() {
     it("creates 9 spaces when it is initialized", function() {
       var board = Object.create(Board);
+      
       board.initialize(9);
       board.size.should.equal(9);
     });
@@ -56,21 +60,19 @@ describe("Board", function() {
   describe("create", function() {
     it("creates a board containing spaces based on given size", function() {
       var board = Object.create(Board);
+      
       board.initialize(9);
       board.spaces.length.should.equal(9);
     });
   });
 });
 
-// incomplete
 describe("Game", function() {
   describe("initialize", function() {
     it("initializes a game with a board and two players", function() {
       var game = Object.create(Game);
-      var board = Board.create(9);
-      var player_one = Player.create("Kim", "X");
-      var player_two = Player.create("Elikem", "O");
-      game.initialize(board, player_one, player_two);
+      game.initialize(9, "Kim", "Elikem");
+
       game.board.size.should.equal(9);
       game.player_one.handle.should.equal("Kim");
       game.player_one.letter.should.equal("X");
@@ -81,10 +83,21 @@ describe("Game", function() {
 
   describe("create", function() {
     it("creates a full game", function() {
-      var game = Object.create(Game);
-      game.player_one.should.equal("Player1");
-      game.player_two.should.equal("Player2");
-      game.board.should.equal(9);
+      var game = Game.create(9, "Elikem", "Kim");
+      
+      game.player_one.handle.should.equal("Elikem");
+      game.player_one.letter.should.equal("X");
+      game.player_two.handle.should.equal("Kim");
+      game.player_two.letter.should.equal("O");
+      game.board.size.should.equal(9);
     });
   });
+
+  // describe("switchPlayer", function() {
+  //   it("should switch players", function() {
+  //     var game = Game.create(board, player_one, player_two);
+  //     var currentPlayer
+  //     game.switchPlayer(player_one).should.be.equal(currentPlayer)
+  //   });
+  // });
 });

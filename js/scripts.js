@@ -60,23 +60,34 @@ var Board = {
   }
 };
 
-// incomplete
 var Game = {
-  initialize: function(board, player_one, player_two) {
-  
-    this.board = board; //takes a Board object
-    console.log(board);
+  initialize: function(boardSize, playerOneName, playerTwoName) {
+    var newBoard = Board.create(boardSize);
+    this.board = newBoard; //takes a Board object
+    console.log(newBoard);
     
-    this.player_one = player_one;
-    console.log(player_one);
+    var newPlayerOne = Player.create(playerOneName, "X");
+    this.player_one = newPlayerOne;
+    console.log(newPlayerOne);
     
-    this.player_two = player_two;
-    console.log(player_two);
+    var newPlayerTwo = Player.create(playerTwoName, "O");
+    this.player_two = newPlayerTwo;
+    console.log(newPlayerTwo);
   },
 
-  create: function(board, player_one, player_two) {
+  create: function(boardSize, playerOneName, playerTwoName) {
     var game = Object.create(Game);
-    game.initialize(board, player_one, player_two);
+    game.initialize(boardSize, playerOneName, playerTwoName);
     return game;
-  }
+  },
+
+  // switchPlayer: function() {
+  //   var currentPlayer = "X";
+// 
+  //   if (player.letter !== currentPlayer) {
+  //     play now
+  //   } else {
+  //     you are not the current player
+  //   }
+  // }
 };
