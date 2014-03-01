@@ -12,6 +12,8 @@ var Player = {
 };
 
 var Space = {
+  all : [],
+
   initialize: function(xcoord, ycoord) {
     this.xcoord = xcoord;
     this.ycoord = ycoord;
@@ -20,6 +22,7 @@ var Space = {
   create: function(xcoord, ycoord) {
     var space = Object.create(Space);
     space.initialize(xcoord, ycoord);
+    Space.all.push(space);
     return space;
   },
 
@@ -29,8 +32,14 @@ var Space = {
       ") has been marked by " + player.handle + " with " + player.letter + ".");
   },
 
-  find: function(xcoord, ycoord) {
-    return space;
+  find: function(x, y) {
+    var foundSpace;
+    Space.all.forEach(function(space) {
+      if(x === space.xcoord && y === space.ycoord) {
+        foundSpace = space;
+      }
+    });
+    return foundSpace;
   }
 };
 
@@ -48,8 +57,7 @@ var Board = {
     }
 
     this.spaces.forEach(function(space) {
-      //console.log("testing Board");
-      //console.log(space);
+      // console.log(space);
     });
   },
 
@@ -79,15 +87,7 @@ var Game = {
     var game = Object.create(Game);
     game.initialize(boardSize, playerOneName, playerTwoName);
     return game;
-  },
-
-  // switchPlayer: function() {
-  //   var currentPlayer = "X";
-// 
-  //   if (player.letter !== currentPlayer) {
-  //     play now
-  //   } else {
-  //     you are not the current player
-  //   }
-  // }
+  }
 };
+
+// document.ready javascript submit event to start a new game

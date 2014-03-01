@@ -1,0 +1,20 @@
+table#game  {
+  border-spacing: 0;
+}
+
+.row-one {
+  border-bottom: 1px solid black;
+}
+
+.row-three {
+  border-top: 1px solid black;
+}
+
+.square-two {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.cell {
+  padding: 40px 40px;
+}

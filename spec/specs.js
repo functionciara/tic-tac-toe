@@ -43,7 +43,9 @@ describe("Space", function() {
     it("should go to a space by its coordinates", function(){
       var space = Space.create(1,2);
       
-      space.goToSpace.should.equal(space);
+      Space.find(1,2).should.equal(space);
+      // space.find.ycoord.should.equal(2);
+
     });
   });
 });
@@ -92,12 +94,4 @@ describe("Game", function() {
       game.board.size.should.equal(9);
     });
   });
-
-  // describe("switchPlayer", function() {
-  //   it("should switch players", function() {
-  //     var game = Game.create(board, player_one, player_two);
-  //     var currentPlayer
-  //     game.switchPlayer(player_one).should.be.equal(currentPlayer)
-  //   });
-  // });
 });
